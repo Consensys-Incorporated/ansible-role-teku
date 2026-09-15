@@ -1,6 +1,6 @@
 - name: latest | Get the latest version from GitHub repository
   ansible.builtin.uri:
-    url: "https://api.github.com/repos/consensys/teku/releases/latest"
+    url: "https://api.github.com/repos/Consensys-Incorporated/teku/releases/latest"
     method: GET
     status_code: 200
     return_content: true

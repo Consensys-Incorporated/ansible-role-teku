@@ -202,20 +202,27 @@
     - teku_download_url.endswith('.tar.gz')
 
 # case 2 - get from gha artifacts
-# WARNING - what you want to use here is something in this format `https://github.com/Consensys/teku/actions/runs/21675139846/artifacts/5425252727`
+# WARNING - what you want to use here is something in this format `https://github.com/Consensys-Incorporated/teku/actions/runs/21675139846/artifacts/5425252727`
 #           You get this from GHA and use only the `distribution-tar`; not the zip.
 #           It seems counter intuitive I know, but GHA wraps all artifacts in a zip so we effectively do
 #           download zip -> unzip it -> untar teku -> move it to the right place -> proceed
 - block:
     - name: install | Normalize Teku artifact API download URL
       ansible.builtin.set_fact:
-        _teku_artifact_api_url: "https://api.github.com/repos/Consensys/teku/actions/artifacts/{{ teku_download_url | regex_search('artifacts/([0-9]+)', '\\1') | first }}/zip"
+        _teku_artifact_api_url: "https://api.github.com/repos/Consensys-Incorporated/teku/actions/artifacts/{{ teku_download_url | regex_search('artifacts/([0-9]+)', '\\1') | first }}/zip"
 
     - name: install | Debug the Teku artifact URL
       ansible.builtin.debug:
         msg: "Teku artifact API URL: {{ _teku_artifact_api_url }}"
 
     # dont use get_url or uri - getting this off azure blob storage is super painful
+    # GitHub fine-grained PAT used to download artifacts from the private Consensys-Incorporated/teku repo.
+    # Required only when teku_download_url points to a GitHub Actions artifact URL
+    # (e.g. https://github.com/Consensys-Incorporated/teku/actions/runs/<run-id>/artifacts/<artifact-id>).
+    #
+    # Token permissions needed (fine-grained PAT scoped to Consensys-Incorporated/teku):
+    #   - Actions: Read-only  (to download workflow artifacts)
+    #   - Contents: Read-only (to access repository content if needed)
     - name: install | Download Teku artifact zip (curl)
       ansible.builtin.command: >
         curl -L

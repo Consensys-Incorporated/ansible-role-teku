@@ -115,8 +115,8 @@ All variables which can be overridden are stored in [defaults/main.yml](defaults
 | Name                                       | Default Value                                                                                                                | Description                                          |
 |--------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | `teku_build_from_source` | ___unset___                                                                                                                  |  When set to `true`, Teku is build from git sources. See also `teku_git_repo` and `teku_git_commit` |
-| `teku_version` | ___unset___                                                                                                                  |  __REQUIRED__ if `teku_build_from_source` is false. Version of Teku to install and run. All available versions are listed on our Teku [solutions](https://github.com/Consensys/teku/tags) page |
-| `teku_git_repo` | https://github.com/consensys/teku.git                                                                                        | The URL to use when cloning teku sources. Only necessary when `teku_build_from_source` is `true`. |
+| `teku_version` | ___unset___                                                                                                                  |  __REQUIRED__ if `teku_build_from_source` is false. Version of Teku to install and run. All available versions are listed on our Teku [solutions](https://github.com/Consensys-Incorporated/teku/tags) page |
+| `teku_git_repo` | https://github.com/Consensys-Incorporated/teku.git                                                                                        | The URL to use when cloning teku sources. Only necessary when `teku_build_from_source` is `true`. |
 | `teku_git_commit` | master                                                                                                                       | The git commit to use when building Teku from source. Can be a branchname, commit hash, or anything that's legal to be used as an argument to `git checkout`. Only used if `teku_build_from_source` is `true`. |
 | `teku_combined_enabled`                    | True                                                                                                                         | Run beacon and validator (if any) as a single process     |
 | `teku_validator_enabled`                   | False                                                                                                                        | Run validator as a single process        |
@@ -243,11 +243,11 @@ ansible-playbook -v /path/to/requirements.yml
 2. Install via github
 
 ```
-ansible-galaxy install git+https://github.com/consensys/ansible-role-teku.git
+ansible-galaxy install git+https://github.com/Consensys-Incorporated/ansible-role-teku.git
 ```
 
 Create a requirements.yml with the following:
-Replace `x.y.z` below with the version you would like to use from the teku [releases](https://github.com/consensys/teku/releases) page
+Replace `x.y.z` below with the version you would like to use from the teku [releases](https://github.com/Consensys-Incorporated/teku/releases) page
 ```
 ---
 - hosts: localhost
