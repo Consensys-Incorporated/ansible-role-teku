@@ -6,7 +6,7 @@
   when: not (teku_git_repo is defined) or teku_git_repo|length == 0
 
 - name: compile | Check JDK version
-  shell: javac -version | egrep -o '[0-9]+\.[0-9]+\.[0-9]+'
+  ansible.builtin.shell: javac -version | egrep -o '[0-9]+\.[0-9]+\.[0-9]+'
   register: jdk_version
   changed_when: false
   ignore_errors: true
