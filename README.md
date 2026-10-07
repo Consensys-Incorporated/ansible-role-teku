@@ -13,7 +13,6 @@ Ansible role that will install, configure and runs [Teku](https://github.com/Peg
 
 ### Supported Platforms
 ```
-* Debian
 * Ubuntu
 * Redhat(CentOS/Fedora)
 * Amazon
