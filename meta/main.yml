@@ -14,14 +14,12 @@ galaxy_info:
         - buster
     - name: Ubuntu
       versions:
-        - jammy
-        - bionic
-        - xenial
+        - resolute
+        - noble
     - name: Fedora
       versions:
-        - 39
-        - 38
-        - 37
+        - "44"
+        - "43"
   galaxy_tags:
     - teku
     - blockchain
